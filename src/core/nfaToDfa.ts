@@ -4,7 +4,6 @@ import {
   type AutomatonState,
   type AutomatonTransition,
   autoLayoutAutomaton,
-  EPSILON,
   getAlphabet,
 } from './types'
 

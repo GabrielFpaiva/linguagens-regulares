@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "tsc": "bun x tsc --noEmit",
-    "test": "bun test src"
+    "tsc": "tsc --noEmit",
+    "test": "bun test src/core/types.test.ts src/core/simulator.test.ts src/core/nfaToDfa.test.ts src/core/minimizeDfa.test.ts src/core/regexToNfa.test.ts src/core/regexEngine.test.ts"
   },
   "dependencies": {
     "lucide-react": "1.47.0",
