@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Sparkles } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Sparkles, XCircle } from 'lucide-react'
 import React, { useMemo, useState } from 'react'
 import { minimizeDfa } from '../core/minimizeDfa'
 import { convertNfaToDfa } from '../core/nfaToDfa'
@@ -192,15 +192,22 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
               {equivalenceWords.map((w) => {
                 const origOk = simulateAutomaton(automaton, w).accepted
                 const dfaOk = simulateAutomaton(nfaToDfaResult.dfa, w).accepted
+                const agree = origOk === dfaOk
                 return (
                   <div
                     key={w}
                     className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-950 px-3 py-1.5 text-xs font-mono"
                   >
                     <span className="text-slate-200">&quot;{w || 'ε'}&quot;</span>
-                    <span className="inline-flex items-center gap-1 text-emerald-400">
-                      <CheckCircle2 className="h-3.5 w-3.5" />
-                      {origOk === dfaOk ? (origOk ? 'Ambos Aceitam' : 'Ambos Rejeitam') : 'Divergente'}
+                    <span
+                      className={`inline-flex items-center gap-1 ${agree ? 'text-emerald-400' : 'text-rose-400'}`}
+                    >
+                      {agree ? (
+                        <CheckCircle2 className="h-3.5 w-3.5" />
+                      ) : (
+                        <XCircle className="h-3.5 w-3.5" />
+                      )}
+                      {agree ? (origOk ? 'Ambos Aceitam' : 'Ambos Rejeitam') : 'Divergente'}
                     </span>
                   </div>
                 )
@@ -360,3 +367,4 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
     </div>
   )
 }
+
