@@ -80,13 +80,14 @@ export function runBacktrackingRegex(
   }
 
   // Retorna gerador de todas as posições finais possíveis a partir de `pos`
-  // evitando loops infinitos em fechos sobre ε
+  // evitando loops infinitos em fechos sobre ε.
+  // O limite `maxSteps` só corta o LOG exibido na tela; a busca sempre vai até o fim,
+  // senão uma entrada longa seria rejeitada por falta de passos, não por falta de casamento.
   function* matchNode(
     node: RegexAstNode,
     pos: number,
     visitedStar = new Set<string>(),
   ): Generator<number> {
-    if (events.length >= maxSteps) return
 
     switch (node.type) {
       case 'literal': {
@@ -299,3 +300,4 @@ export function findPatternMatchesInText(pattern: string, text: string): TextMat
 
   return spans
 }
+
