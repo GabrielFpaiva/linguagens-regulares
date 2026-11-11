@@ -265,12 +265,12 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
   const selectedState = automaton.states.find((s) => s.id === selectedStateId)
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/90 shadow-lg overflow-hidden">
+    <div className="rounded-xl border border-neutral-200 bg-white/90 shadow-lg overflow-hidden">
       {/* Barra de ferramentas superior */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 bg-slate-900 px-3.5 py-2.5">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-neutral-200 bg-white px-3.5 py-2.5">
         <div className="flex items-center gap-1.5">
           {title ? (
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-300 px-1">
+            <span className="text-xs font-semibold text-neutral-700 px-1">
               {title}
             </span>
           ) : null}
@@ -285,12 +285,12 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                 }}
                 className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition ${
                   tool === 'select'
-                    ? 'bg-indigo-600 text-white shadow-sm'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    ? 'bg-neutral-900 text-white shadow-sm'
+                    : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                 }`}
               >
                 <MousePointer className="h-3.5 w-3.5" />
-                Mover / Editar
+                Mover
               </button>
               <button
                 type="button"
@@ -300,8 +300,8 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                 }}
                 className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition ${
                   tool === 'add-state'
-                    ? 'bg-indigo-600 text-white shadow-sm'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    ? 'bg-neutral-900 text-white shadow-sm'
+                    : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                 }`}
               >
                 <CirclePlus className="h-3.5 w-3.5" />
@@ -315,8 +315,8 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                 }}
                 className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition ${
                   tool === 'add-transition'
-                    ? 'bg-indigo-600 text-white shadow-sm'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    ? 'bg-neutral-900 text-white shadow-sm'
+                    : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                 }`}
               >
                 <GitCommitHorizontal className="h-3.5 w-3.5" />
@@ -331,27 +331,27 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
             <button
               type="button"
               onClick={() => onChange(autoLayoutAutomaton(automaton, 860, height))}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-slate-800 px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:bg-slate-700"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-100 px-2.5 py-1.5 text-xs font-medium text-neutral-700 hover:bg-neutral-200"
               title="Organizar estados automaticamente"
             >
               <LayoutGrid className="h-3.5 w-3.5" />
-              Auto-Layout
+              Organizar
             </button>
           )}
           <button
             type="button"
             onClick={openJsonModal}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-slate-800 px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:bg-slate-700"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-100 px-2.5 py-1.5 text-xs font-medium text-neutral-700 hover:bg-neutral-200"
           >
-            <FileCode2 className="h-3.5 w-3.5 text-indigo-400" />
-            JSON (PDF)
+            <FileCode2 className="h-3.5 w-3.5 text-neutral-900" />
+            JSON
           </button>
           <button
             type="button"
             onClick={handleDownloadSvg}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-slate-800 px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:bg-slate-700"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-100 px-2.5 py-1.5 text-xs font-medium text-neutral-700 hover:bg-neutral-200"
           >
-            <Download className="h-3.5 w-3.5 text-emerald-400" />
+            <Download className="h-3.5 w-3.5 text-neutral-900" />
             Exportar SVG
           </button>
         </div>
@@ -359,7 +359,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
 
       {/* Dica contextual da ferramenta ativa */}
       {!readOnly && (
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 bg-slate-950/60 px-3.5 py-1.5 text-xs text-slate-400">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-neutral-300 bg-neutral-50/60 px-3.5 py-1.5 text-xs text-neutral-500">
           <div>
             {tool === 'select' &&
               'Dica: Arraste estados para posicioná-los. Clique em um estado para definir Inicial / Aceitação ou excluir.'}
@@ -373,7 +373,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
 
           {selectedState && (
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-indigo-300">
+              <span className="font-semibold text-neutral-900">
                 Estado {selectedState.label}:
               </span>
               <button
@@ -381,8 +381,8 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                 onClick={() => toggleInitial(selectedState.id)}
                 className={`inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium ${
                   selectedState.isInitial
-                    ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/40'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    ? 'bg-neutral-100 text-neutral-900 border border-neutral-300'
+                    : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                 }`}
               >
                 <Play className="h-3 w-3" />
@@ -393,8 +393,8 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                 onClick={() => toggleAccepting(selectedState.id)}
                 className={`inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium ${
                   selectedState.isAccepting
-                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    ? 'bg-neutral-100 text-neutral-900 border border-neutral-300'
+                    : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                 }`}
               >
                 <CheckCircle2 className="h-3 w-3" />
@@ -403,7 +403,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
               <button
                 type="button"
                 onClick={() => deleteState(selectedState.id)}
-                className="inline-flex items-center gap-1 rounded bg-rose-500/15 px-2 py-0.5 text-xs font-medium text-rose-300 hover:bg-rose-500/25"
+                className="inline-flex items-center gap-1 rounded bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-500 hover:bg-neutral-100"
               >
                 <Trash2 className="h-3 w-3" />
                 Excluir
@@ -417,9 +417,9 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
       {pendingTransitionTarget && (
         <form
           onSubmit={confirmAddTransition}
-          className="flex items-center justify-between gap-3 border-b border-indigo-500/30 bg-indigo-950/40 px-4 py-2 text-xs"
+          className="flex items-center justify-between gap-3 border-b border-neutral-300 bg-neutral-100 px-4 py-2 text-xs"
         >
-          <div className="flex items-center gap-2 text-indigo-200">
+          <div className="flex items-center gap-2 text-neutral-900">
             <span>
               Nova transição de{' '}
               <strong>{stateMap.get(pendingTransitionTarget.from)?.label}</strong> para{' '}
@@ -430,13 +430,13 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
               value={symbolInput}
               onChange={(e) => setSymbolInput(e.target.value)}
               placeholder="Símbolo (ex: a, b ou ε)"
-              className="w-36 rounded border border-indigo-500/50 bg-slate-900 px-2 py-1 text-xs text-white focus:outline-none"
+              className="w-36 rounded border border-neutral-300 bg-white px-2 py-1 text-xs text-neutral-900 focus:outline-none"
               autoFocus
             />
             <button
               type="button"
               onClick={() => setSymbolInput(EPSILON)}
-              className="rounded bg-slate-800 px-2 py-1 text-amber-300 hover:bg-slate-700"
+              className="rounded bg-neutral-100 px-2 py-1 text-neutral-900 hover:bg-neutral-200"
             >
               Inserir {EPSILON}
             </button>
@@ -444,14 +444,14 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
           <div className="flex items-center gap-2">
             <button
               type="submit"
-              className="rounded bg-indigo-600 px-3 py-1 font-medium text-white hover:bg-indigo-500"
+              className="rounded bg-neutral-900 px-3 py-1 font-medium text-white hover:bg-neutral-900"
             >
               Adicionar
             </button>
             <button
               type="button"
               onClick={() => setPendingTransitionTarget(null)}
-              className="rounded bg-slate-800 px-2.5 py-1 text-slate-300 hover:bg-slate-700"
+              className="rounded bg-neutral-100 px-2.5 py-1 text-neutral-700 hover:bg-neutral-200"
             >
               Cancelar
             </button>
@@ -460,7 +460,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
       )}
 
       {/* Quadro SVG Interativo */}
-      <div className="relative bg-slate-950">
+      <div className="relative bg-neutral-50">
         <svg
           ref={svgRef}
           viewBox={`0 0 860 ${height}`}
@@ -479,7 +479,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
               height="28"
               patternUnits="userSpaceOnUse"
             >
-              <circle cx="1" cy="1" r="1" fill="#1e293b" />
+              <circle cx="1" cy="1" r="1" fill="#E5E5EA" />
             </pattern>
             <marker
               id="arrow-normal"
@@ -490,7 +490,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
               markerHeight="6"
               orient="auto-start-reverse"
             >
-              <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b" />
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#A1A1A6" />
             </marker>
             <marker
               id="arrow-active"
@@ -501,7 +501,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
               markerHeight="6"
               orient="auto-start-reverse"
             >
-              <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b" />
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#1D1D1F" />
             </marker>
             <marker
               id="arrow-initial"
@@ -512,7 +512,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
               markerHeight="6"
               orient="auto-start-reverse"
             >
-              <path d="M 0 1 L 10 5 L 0 9 z" fill="#818cf8" />
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#1D1D1F" />
             </marker>
           </defs>
 
@@ -525,7 +525,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
             if (!fromState || !toState) return null
 
             const active = isEdgeActive(edge.from, edge.to, edge.symbols)
-            const strokeColor = active ? '#f59e0b' : '#64748b'
+            const strokeColor = active ? '#1D1D1F' : '#A1A1A6'
             const marker = active ? 'url(#arrow-active)' : 'url(#arrow-normal)'
             const label = edge.symbols.join(', ')
 
@@ -563,8 +563,8 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                     width={label.length * 8 + 20}
                     height={20}
                     rx={6}
-                    fill="#0f172a"
-                    stroke={active ? '#f59e0b' : '#334155'}
+                    fill="#FFFFFF"
+                    stroke={active ? '#1D1D1F' : '#D2D2D7'}
                     strokeWidth={1}
                   />
                   <text
@@ -573,7 +573,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                     textAnchor="middle"
                     dominantBaseline="central"
                     className={`text-xs font-mono font-semibold ${
-                      active ? 'fill-amber-300' : 'fill-slate-200'
+                      active ? 'fill-neutral-900' : 'fill-neutral-800'
                     }`}
                   >
                     {label}
@@ -633,8 +633,8 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                   width={label.length * 8 + 20}
                   height={20}
                   rx={6}
-                  fill="#0f172a"
-                  stroke={active ? '#f59e0b' : '#334155'}
+                  fill="#FFFFFF"
+                  stroke={active ? '#1D1D1F' : '#D2D2D7'}
                   strokeWidth={1}
                 />
                 <text
@@ -643,7 +643,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                   textAnchor="middle"
                   dominantBaseline="central"
                   className={`text-xs font-mono font-semibold ${
-                    active ? 'fill-amber-300' : 'fill-slate-200'
+                    active ? 'fill-neutral-900' : 'fill-neutral-800'
                   }`}
                 >
                   {label}
@@ -669,7 +669,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                     y1={s.y}
                     x2={s.x - RADIUS - 5}
                     y2={s.y}
-                    stroke="#818cf8"
+                    stroke="#1D1D1F"
                     strokeWidth="2.5"
                     markerEnd="url(#arrow-initial)"
                   />
@@ -681,7 +681,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                     cy={s.y}
                     r={RADIUS + 7}
                     fill="none"
-                    stroke="#f59e0b"
+                    stroke="#1D1D1F"
                     strokeWidth="2"
                     strokeDasharray="4 3"
                   />
@@ -691,15 +691,15 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                   cx={s.x}
                   cy={s.y}
                   r={RADIUS}
-                  fill={isActive ? '#451a03' : isSelected ? '#1e1b4b' : '#0f172a'}
+                  fill={isActive ? '#1D1D1F' : isSelected ? '#F5F5F7' : '#FFFFFF'}
                   stroke={
                     isActive
-                      ? '#f59e0b'
+                      ? '#1D1D1F'
                       : isSelected
-                        ? '#818cf8'
+                        ? '#1D1D1F'
                         : s.isAccepting
-                          ? '#10b981'
-                          : '#475569'
+                          ? '#1D1D1F'
+                          : '#86868B'
                   }
                   strokeWidth={isActive || isSelected ? 2.6 : 2}
                 />
@@ -710,7 +710,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                     cy={s.y}
                     r={RADIUS - 5}
                     fill="none"
-                    stroke={isActive ? '#fbbf24' : '#10b981'}
+                    stroke={isActive ? '#FFFFFF' : '#1D1D1F'}
                     strokeWidth="1.8"
                   />
                 )}
@@ -721,7 +721,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
                   textAnchor="middle"
                   dominantBaseline="central"
                   className={`text-xs font-mono font-bold ${
-                    isActive ? 'fill-amber-300' : 'fill-slate-100'
+                    isActive ? 'fill-white' : 'fill-neutral-900'
                   }`}
                 >
                   {s.label}
@@ -734,15 +734,15 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
 
       {/* Modal de Exportação / Importação JSON (Formato da Seção 2.1 do PDF) */}
       {jsonModalOpen && (
-        <div className="border-t border-slate-800 bg-slate-900 p-4">
+        <div className="border-t border-neutral-200 bg-white p-4">
           <div className="flex items-center justify-between mb-2">
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-indigo-300">
-                Especificação JSON do Autômato (Seção 2.1 do PDF)
+              <h4 className="text-xs font-semibold text-neutral-900">
+                JSON do autômato
               </h4>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-neutral-500">
                 Compatível com o formato da página 3 do PDF:{' '}
-                <code className="text-slate-300">
+                <code className="text-neutral-700">
                   {'{ "q0": { "a": "q1", "b": "q0" }, ... }'}
                 </code>
               </p>
@@ -750,7 +750,7 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
             <button
               type="button"
               onClick={() => setJsonModalOpen(false)}
-              className="text-xs text-slate-400 hover:text-white"
+              className="text-xs text-neutral-500 hover:text-neutral-900"
             >
               Fechar
             </button>
@@ -760,20 +760,20 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
             value={jsonText}
             onChange={(e) => setJsonText(e.target.value)}
             rows={7}
-            className="w-full rounded-lg border border-slate-700 bg-slate-950 p-3 font-mono text-xs text-slate-100 focus:border-indigo-500 focus:outline-none"
+            className="w-full rounded-lg border border-neutral-300 bg-neutral-50 p-3 font-mono text-xs text-neutral-900 focus:border-neutral-900 focus:outline-none"
           />
 
-          {jsonError && <p className="mt-1.5 text-xs text-rose-400">{jsonError}</p>}
+          {jsonError && <p className="mt-1.5 text-xs text-neutral-500">{jsonError}</p>}
 
           <div className="mt-2.5 flex items-center justify-end gap-2">
             {!readOnly && onChange && (
               <button
                 type="button"
                 onClick={handleImportJson}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-indigo-500"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-neutral-900"
               >
                 <Upload className="h-3.5 w-3.5" />
-                Carregar este JSON no Editor
+                Carregar JSON
               </button>
             )}
           </div>
@@ -782,3 +782,4 @@ export const AutomatonCanvas: React.FC<AutomatonCanvasProps> = ({
     </div>
   )
 }
+

@@ -104,3 +104,4 @@ describe('Equivalência entre todos os motores (todas as cadeias até tamanho 6)
     expect(runBacktrackingRegex('(a|b)*abb', `${long}a`).accepted).toBe(false)
   })
 })
+

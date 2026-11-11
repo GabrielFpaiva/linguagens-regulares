@@ -72,3 +72,4 @@ describe('Automaton Simulator (PDF Section 2.1)', () => {
     expect(emptyRun.accepted).toBe(true)
   })
 })
+

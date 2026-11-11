@@ -185,3 +185,4 @@ export function convertNfaToRegex(automaton: Automaton): NfaToRegexResult {
     steps,
   }
 }
+

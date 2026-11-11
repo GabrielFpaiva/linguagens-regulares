@@ -307,3 +307,4 @@ export function minimizeDfa(automaton: Automaton): MinimizationResult {
     steps,
   }
 }
+

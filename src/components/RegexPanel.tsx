@@ -82,9 +82,9 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
 
   // Renderiza o texto com highlight dos casamentos encontrados
   const renderHighlightedText = () => {
-    if (!searchText) return <span className="text-slate-500">Texto vazio</span>
+    if (!searchText) return <span className="text-neutral-400">Texto vazio</span>
     if (result.matches.length === 0) {
-      return <span className="text-slate-300">{searchText}</span>
+      return <span className="text-neutral-700">{searchText}</span>
     }
 
     const parts: React.ReactNode[] = []
@@ -92,7 +92,7 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
     result.matches.forEach((m, idx) => {
       if (m.start > cursor) {
         parts.push(
-          <span key={`plain-${idx}`} className="text-slate-400">
+          <span key={`plain-${idx}`} className="text-neutral-500">
             {searchText.slice(cursor, m.start)}
           </span>,
         )
@@ -100,7 +100,7 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
       parts.push(
         <mark
           key={`match-${idx}`}
-          className="rounded bg-emerald-500/30 border border-emerald-400/50 px-1 py-0.5 font-bold text-emerald-200"
+          className="rounded bg-neutral-100 border border-neutral-300 px-1 py-0.5 font-bold text-neutral-900"
         >
           {m.match}
         </mark>,
@@ -109,7 +109,7 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
     })
     if (cursor < searchText.length) {
       parts.push(
-        <span key="plain-end" className="text-slate-400">
+        <span key="plain-end" className="text-neutral-500">
           {searchText.slice(cursor)}
         </span>,
       )
@@ -120,15 +120,15 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
   return (
     <div className="space-y-4">
       {/* Presets e Entrada da ER */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/90 p-4">
+      <div className="rounded-xl border border-neutral-200 bg-white/90 p-4">
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
           <div>
-            <h3 className="text-sm font-bold text-white">
-              Seções 2.5 e 2.7 — Conversão ER → AFN e Implementação de Expressões Regulares
+            <h3 className="text-sm font-bold text-neutral-900">
+              Expressão regular
             </h3>
-            <p className="text-xs text-slate-400">
-              Compara as duas técnicas descritas na página 5 do PDF: (1) Pipeline de Autômatos
-              (ER → AFN → AFD → AFD Mínimo) vs (2) Busca Direta na ER com Backtracking.
+            <p className="text-xs text-neutral-500">
+              Converte em autômato (Thompson, subconjuntos, minimização) e compara com o
+              interpretador com backtracking.
             </p>
           </div>
         </div>
@@ -145,8 +145,8 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
               }}
               className={`rounded-lg border px-2.5 py-1 text-xs font-mono transition ${
                 pattern === p.pattern
-                  ? 'border-indigo-500 bg-indigo-950/60 text-indigo-200'
-                  : 'border-slate-800 bg-slate-950 text-slate-300 hover:border-slate-700'
+                  ? 'border-neutral-900 bg-neutral-100 text-neutral-900'
+                  : 'border-neutral-200 bg-neutral-50 text-neutral-700 hover:border-neutral-300'
               }`}
             >
               /{p.label}/
@@ -156,47 +156,47 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">
-              Expressão Regular (Operadores: <code className="text-indigo-300">| * + ? ( )</code>):
+            <label className="block text-xs font-medium text-neutral-500 mb-1">
+              Expressão (operadores: <code className="text-neutral-900">| * + ? ( )</code>):
             </label>
             <input
               type="text"
               value={pattern}
               onChange={(e) => setPattern(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-white focus:border-indigo-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-300 bg-neutral-50 px-3 py-2 font-mono text-sm text-neutral-900 focus:border-neutral-900 focus:outline-none"
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">
-              Cadeia para validação exata (<code className="text-indigo-300">w</code>):
+            <label className="block text-xs font-medium text-neutral-500 mb-1">
+              Cadeia (<code className="text-neutral-900">w</code>):
             </label>
             <input
               type="text"
               value={testInput}
               onChange={(e) => setTestInput(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-white focus:border-indigo-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-300 bg-neutral-50 px-3 py-2 font-mono text-sm text-neutral-900 focus:border-neutral-900 focus:outline-none"
             />
           </div>
         </div>
 
         {result.error && (
-          <div className="mt-3 rounded-lg border border-rose-500/30 bg-rose-950/30 p-3 text-xs text-rose-300">
+          <div className="mt-3 rounded-lg border border-neutral-300 bg-neutral-100 p-3 text-xs text-neutral-500">
             {result.error}
           </div>
         )}
 
         {result.data && (
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-xs">
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-xs">
             <div className="space-x-4 font-mono">
-              <span className="text-slate-400">
+              <span className="text-neutral-500">
                 Concatenação explícita:{' '}
-                <strong className="text-indigo-300">
+                <strong className="text-neutral-900">
                   {result.data.automatonPipeline.thompson.explicitConcatPattern}
                 </strong>
               </span>
-              <span className="text-slate-400">
+              <span className="text-neutral-500">
                 Pós-fixa (Shunting-Yard):{' '}
-                <strong className="text-amber-300">
+                <strong className="text-neutral-900">
                   {result.data.automatonPipeline.thompson.postfix}
                 </strong>
               </span>
@@ -204,12 +204,12 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
 
             <div>
               {result.data.accepted ? (
-                <span className="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-1 font-semibold text-emerald-300">
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-neutral-900 border border-neutral-900 px-2.5 py-1 font-semibold text-white">
                   <CheckCircle2 className="h-3.5 w-3.5" />
                   Cadeia &quot;{testInput || 'ε'}&quot; ACEITA
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1.5 rounded-md bg-rose-500/15 border border-rose-500/30 px-2.5 py-1 font-semibold text-rose-300">
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-neutral-100 border border-neutral-300 px-2.5 py-1 font-semibold text-neutral-500">
                   <XCircle className="h-3.5 w-3.5" />
                   Cadeia &quot;{testInput || 'ε'}&quot; REJEITADA
                 </span>
@@ -222,7 +222,7 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
       {/* Visualização do Pipeline de Autômatos vs Backtracking */}
       {result.data && displayedAutomaton && (
         <>
-          <div className="rounded-xl border border-slate-800 bg-slate-900/90 p-4">
+          <div className="rounded-xl border border-neutral-200 bg-white/90 p-4">
             <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
               <div className="flex flex-wrap items-center gap-2">
                 <button
@@ -230,8 +230,8 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
                   onClick={() => setPipelineView('thompson')}
                   className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
                     pipelineView === 'thompson'
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      ? 'bg-neutral-900 text-white'
+                      : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                   }`}
                 >
                   1. AFN-ε de Thompson ({result.data.automatonPipeline.thompson.nfa.states.length}{' '}
@@ -242,8 +242,8 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
                   onClick={() => setPipelineView('dfa')}
                   className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
                     pipelineView === 'dfa'
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      ? 'bg-neutral-900 text-white'
+                      : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                   }`}
                 >
                   2. AFD Subconjuntos ({result.data.automatonPipeline.subsetDfa.dfa.states.length}{' '}
@@ -254,8 +254,8 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
                   onClick={() => setPipelineView('min-dfa')}
                   className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
                     pipelineView === 'min-dfa'
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      ? 'bg-neutral-900 text-white'
+                      : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                   }`}
                 >
                   3. AFD Minimizado (
@@ -266,9 +266,9 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
               <button
                 type="button"
                 onClick={() => onLoadAutomatonIntoEditor(displayedAutomaton)}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600/20 border border-emerald-500/30 px-3 py-1.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-600/30"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-100 border border-neutral-300 px-3 py-1.5 text-xs font-semibold text-neutral-900 hover:bg-neutral-100"
               >
-                Abrir e Simular no Editor Principal
+                Abrir no editor
                 <ArrowRight className="h-3.5 w-3.5" />
               </button>
             </div>
@@ -278,13 +278,13 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
 
           {/* Comparação lado a lado: Técnica 1 (Pipeline AFD) vs Técnica 2 (Backtracking) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className="rounded-xl border border-slate-800 bg-slate-900/90 p-4">
+            <div className="rounded-xl border border-neutral-200 bg-white/90 p-4">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-300">
+                <h4 className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-900">
                   <Sparkles className="h-3.5 w-3.5" />
-                  Técnica 1: Simulação Direta no AFD Minimizado (Sem Backtracking)
+                  AFD minimizado
                 </h4>
-                <span className="rounded bg-emerald-500/15 px-2 py-0.5 text-[11px] font-mono text-emerald-300">
+                <span className="rounded bg-neutral-100 px-2 py-0.5 text-[11px] font-mono text-neutral-900">
                   {result.data.automatonPipeline.dfaSimulation.steps.length - 1} transições O(|w|)
                 </span>
               </div>
@@ -292,22 +292,22 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
                 {result.data.automatonPipeline.dfaSimulation.steps.map((st) => (
                   <div
                     key={st.stepIndex}
-                    className="rounded border border-slate-800 bg-slate-950 px-3 py-1.5 text-xs font-mono text-slate-300"
+                    className="rounded border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-xs font-mono text-neutral-700"
                   >
-                    <span className="text-indigo-400 font-bold">Passo {st.stepIndex}:</span>{' '}
+                    <span className="text-neutral-900 font-bold">Passo {st.stepIndex}:</span>{' '}
                     {st.explanation}
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="rounded-xl border border-slate-800 bg-slate-900/90 p-4">
+            <div className="rounded-xl border border-neutral-200 bg-white/90 p-4">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-300">
+                <h4 className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-900">
                   <GitBranch className="h-3.5 w-3.5" />
-                  Técnica 2: Interpretador Direto da ER com Backtracking
+                  Interpretador com backtracking
                 </h4>
-                <span className="rounded bg-amber-500/15 px-2 py-0.5 text-[11px] font-mono text-amber-300">
+                <span className="rounded bg-neutral-100 px-2 py-0.5 text-[11px] font-mono text-neutral-900">
                   {result.data.backtrackingEngine.backtrackCount} backtrack(s)
                 </span>
               </div>
@@ -317,10 +317,10 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
                     key={ev.step}
                     className={`rounded border px-3 py-1.5 text-xs font-mono ${
                       ev.action === 'backtrack'
-                        ? 'border-rose-500/30 bg-rose-950/20 text-rose-300'
+                        ? 'border-neutral-300 bg-neutral-100 text-neutral-500'
                         : ev.action === 'match'
-                          ? 'border-emerald-500/30 bg-emerald-950/20 text-emerald-300'
-                          : 'border-slate-800 bg-slate-950 text-slate-300'
+                          ? 'border-neutral-300 bg-neutral-100 text-neutral-900'
+                          : 'border-neutral-200 bg-neutral-50 text-neutral-700'
                     }`}
                   >
                     <span className="font-bold">#{ev.step}</span> [{ev.action.toUpperCase()}] —{' '}
@@ -332,13 +332,13 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
           </div>
 
           {/* Busca por padrões em texto livre (Seção 2.7) */}
-          <div className="rounded-xl border border-slate-800 bg-slate-900/90 p-4">
+          <div className="rounded-xl border border-neutral-200 bg-white/90 p-4">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-300">
+              <h4 className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-900">
                 <Search className="h-3.5 w-3.5" />
-                Aplicação de ER (Seção 2.7): Busca de Padrões em Texto Livre
+                Busca em texto
               </h4>
-              <span className="text-xs text-emerald-300 font-semibold">
+              <span className="text-xs text-neutral-900 font-semibold">
                 {result.matches.length} ocorrência(s) encontrada(s)
               </span>
             </div>
@@ -347,11 +347,11 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
               type="text"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-white mb-2.5 focus:border-indigo-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-300 bg-neutral-50 px-3 py-2 font-mono text-xs text-neutral-900 mb-2.5 focus:border-neutral-900 focus:outline-none"
               placeholder="Digite um texto para buscar todas as subcadeias que casam com a ER..."
             />
 
-            <div className="rounded-lg border border-slate-800 bg-slate-950 p-3 font-mono text-sm leading-relaxed">
+            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-3 font-mono text-sm leading-relaxed">
               {renderHighlightedText()}
             </div>
           </div>
@@ -360,3 +360,4 @@ export const RegexPanel: React.FC<RegexPanelProps> = ({
     </div>
   )
 }
+

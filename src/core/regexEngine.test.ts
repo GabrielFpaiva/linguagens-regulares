@@ -49,3 +49,4 @@ describe('State Elimination (NFA to ER) & Regex Engines (PDF Sections 2.6 & 2.7)
     ])
   })
 })
+

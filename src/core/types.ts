@@ -335,3 +335,4 @@ export function fromJsonString(jsonText: string): Automaton {
     transitions,
   })
 }
+

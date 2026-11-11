@@ -27,3 +27,4 @@ describe('Regex to NFA via Thompson Construction (PDF Section 2.5)', () => {
     expect(simulateAutomaton(res.nfa, 'abbc').accepted).toBe(false)
   })
 })
+

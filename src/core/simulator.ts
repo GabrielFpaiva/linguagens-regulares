@@ -210,3 +210,4 @@ export function simulateAutomaton(
     rejectedReason,
   }
 }
+

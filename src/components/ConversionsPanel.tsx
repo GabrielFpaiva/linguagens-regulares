@@ -32,39 +32,39 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
   return (
     <div className="space-y-4">
       {/* Seletor de algoritmo das Seções 2.3, 2.4 e 2.6 */}
-      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-slate-800 bg-slate-900 p-2">
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-neutral-200 bg-white p-2">
         <button
           type="button"
           onClick={() => setSubTab('nfa-to-dfa')}
           className={`rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
             subTab === 'nfa-to-dfa'
-              ? 'bg-indigo-600 text-white'
-              : 'text-slate-300 hover:bg-slate-800'
+              ? 'bg-neutral-900 text-white'
+              : 'text-neutral-700 hover:bg-neutral-100'
           }`}
         >
-          2.3 Conversão AFN → AFD (Remoção de ε + Subconjuntos)
+          AFN → AFD
         </button>
         <button
           type="button"
           onClick={() => setSubTab('minimize')}
           className={`rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
             subTab === 'minimize'
-              ? 'bg-indigo-600 text-white'
-              : 'text-slate-300 hover:bg-slate-800'
+              ? 'bg-neutral-900 text-white'
+              : 'text-neutral-700 hover:bg-neutral-100'
           }`}
         >
-          2.4 Minimização de AFD (Partições e Pares Distinguíveis)
+          Minimização
         </button>
         <button
           type="button"
           onClick={() => setSubTab('nfa-to-er')}
           className={`rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
             subTab === 'nfa-to-er'
-              ? 'bg-indigo-600 text-white'
-              : 'text-slate-300 hover:bg-slate-800'
+              ? 'bg-neutral-900 text-white'
+              : 'text-neutral-700 hover:bg-neutral-100'
           }`}
         >
-          2.6 Conversão AFN → Expressão Regular (Eliminação de Estados)
+          AFN → ER
         </button>
       </div>
 
@@ -74,13 +74,13 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-semibold text-slate-300">
-                  1º Algoritmo: AFN sem Movimentos Vazios (ε removidos)
+                <span className="text-xs font-semibold text-neutral-700">
+                  1. Sem movimentos vazios
                 </span>
                 <button
                   type="button"
                   onClick={() => onLoadIntoEditor(nfaToDfaResult.epsilonRemoval.withoutEpsilon)}
-                  className="inline-flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300"
+                  className="inline-flex items-center gap-1 text-xs text-neutral-900 hover:text-neutral-900"
                 >
                   Enviar ao Editor <ArrowRight className="h-3 w-3" />
                 </button>
@@ -94,13 +94,13 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-semibold text-emerald-300">
-                  2º Algoritmo: AFD Equivalente (Construção de Subconjuntos)
+                <span className="text-xs font-semibold text-neutral-900">
+                  2. AFD por subconjuntos
                 </span>
                 <button
                   type="button"
                   onClick={() => onLoadIntoEditor(nfaToDfaResult.dfa)}
-                  className="inline-flex items-center gap-1 text-xs text-emerald-400 hover:text-emerald-300"
+                  className="inline-flex items-center gap-1 text-xs text-neutral-900 hover:text-neutral-900"
                 >
                   Enviar AFD ao Editor <ArrowRight className="h-3 w-3" />
                 </button>
@@ -111,28 +111,28 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
 
           {/* Tabela de Fecho-ε e Tabela de Subconjuntos */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <div className="rounded-xl border border-slate-800 bg-slate-900/90 p-4">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-2">
-                Tabela de Fecho-ε (ε-closure)
+            <div className="rounded-xl border border-neutral-200 bg-white/90 p-4">
+              <h4 className="text-xs font-semibold text-neutral-900 mb-2">
+                Fecho-ε
               </h4>
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs font-mono">
                   <thead>
-                    <tr className="border-b border-slate-800 text-slate-400">
+                    <tr className="border-b border-neutral-200 text-neutral-500">
                       <th className="py-1.5">Estado</th>
                       <th className="py-1.5">ε-fecho(q)</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/60">
+                  <tbody className="divide-y divide-neutral-200">
                     {nfaToDfaResult.epsilonRemoval.closures.map((c) => (
                       <tr key={c.stateId}>
-                        <td className="py-1.5 font-bold text-slate-200">{c.stateLabel}</td>
-                        <td className="py-1.5 text-amber-300">
+                        <td className="py-1.5 font-bold text-neutral-800">{c.stateLabel}</td>
+                        <td className="py-1.5 text-neutral-900">
                           {'{'}
                           {c.closureLabels.join(', ')}
                           {'}'}
                           {c.becameAccepting && (
-                            <span className="ml-1.5 text-[10px] text-emerald-400">
+                            <span className="ml-1.5 text-[10px] text-neutral-900">
                               (+aceitação)
                             </span>
                           )}
@@ -144,34 +144,34 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
               </div>
             </div>
 
-            <div className="lg:col-span-2 rounded-xl border border-slate-800 bg-slate-900/90 p-4">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-emerald-300 mb-2">
-                Tabela de Transição dos Subconjuntos (AFN → AFD)
+            <div className="lg:col-span-2 rounded-xl border border-neutral-200 bg-white/90 p-4">
+              <h4 className="text-xs font-semibold text-neutral-900 mb-2">
+                Subconjuntos
               </h4>
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs font-mono">
                   <thead>
-                    <tr className="border-b border-slate-800 text-slate-400">
+                    <tr className="border-b border-neutral-200 text-neutral-500">
                       <th className="py-1.5 pr-3">Macro-Estado AFD</th>
                       <th className="py-1.5 pr-3">Conjunto no AFN</th>
                       {nfaToDfaResult.alphabet.map((sym) => (
-                        <th key={sym} className="py-1.5 px-2 text-indigo-300">
+                        <th key={sym} className="py-1.5 px-2 text-neutral-900">
                           δ(·, {sym})
                         </th>
                       ))}
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/60">
+                  <tbody className="divide-y divide-neutral-200">
                     {nfaToDfaResult.subsetTable.map((row) => (
                       <tr key={row.dfaStateId}>
-                        <td className="py-1.5 pr-3 font-bold text-white">
+                        <td className="py-1.5 pr-3 font-bold text-neutral-900">
                           {row.isInitial ? '→ ' : ''}
                           {row.isAccepting ? '*' : ''}
                           {row.dfaStateId}
                         </td>
-                        <td className="py-1.5 pr-3 text-emerald-300">{row.dfaStateLabel}</td>
+                        <td className="py-1.5 pr-3 text-neutral-900">{row.dfaStateLabel}</td>
                         {nfaToDfaResult.alphabet.map((sym) => (
-                          <td key={sym} className="py-1.5 px-2 text-slate-300">
+                          <td key={sym} className="py-1.5 px-2 text-neutral-700">
                             {row.transitions[sym]?.targetDfaLabel ?? '∅'}
                           </td>
                         ))}
@@ -184,9 +184,9 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
           </div>
 
           {/* Verificação de Equivalência Original vs Convertido */}
-          <div className="rounded-xl border border-slate-800 bg-slate-900/90 p-4">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
-              Verificação de Equivalência: Autômato Original vs AFD Convertido
+          <div className="rounded-xl border border-neutral-200 bg-white/90 p-4">
+            <h4 className="text-xs font-semibold text-neutral-700 mb-2">
+              Original e AFD dão a mesma resposta?
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {equivalenceWords.map((w) => {
@@ -196,11 +196,11 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
                 return (
                   <div
                     key={w}
-                    className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-950 px-3 py-1.5 text-xs font-mono"
+                    className="flex items-center justify-between rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-xs font-mono"
                   >
-                    <span className="text-slate-200">&quot;{w || 'ε'}&quot;</span>
+                    <span className="text-neutral-800">&quot;{w || 'ε'}&quot;</span>
                     <span
-                      className={`inline-flex items-center gap-1 ${agree ? 'text-emerald-400' : 'text-rose-400'}`}
+                      className={`inline-flex items-center gap-1 ${agree ? 'text-neutral-900' : 'text-neutral-500'}`}
                     >
                       {agree ? (
                         <CheckCircle2 className="h-3.5 w-3.5" />
@@ -222,7 +222,7 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
         <div className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div>
-              <div className="mb-1.5 text-xs font-semibold text-slate-300">
+              <div className="mb-1.5 text-xs font-semibold text-neutral-700">
                 AFD Original ({minimizationResult.originalDfa.states.length} estados)
               </div>
               <AutomatonCanvas
@@ -234,13 +234,13 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-semibold text-emerald-300">
+                <span className="text-xs font-semibold text-neutral-900">
                   AFD Minimizado ({minimizationResult.minimizedDfa.states.length} estados)
                 </span>
                 <button
                   type="button"
                   onClick={() => onLoadIntoEditor(minimizationResult.minimizedDfa)}
-                  className="inline-flex items-center gap-1 text-xs text-emerald-400 hover:text-emerald-300"
+                  className="inline-flex items-center gap-1 text-xs text-neutral-900 hover:text-neutral-900"
                 >
                   Enviar AFD Mínimo ao Editor <ArrowRight className="h-3 w-3" />
                 </button>
@@ -254,12 +254,12 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className="rounded-xl border border-slate-800 bg-slate-900/90 p-4">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-2">
-                Refinamento Sucessivo de Partições (P₀, P₁, ...)
+            <div className="rounded-xl border border-neutral-200 bg-white/90 p-4">
+              <h4 className="text-xs font-semibold text-neutral-900 mb-2">
+                Partições
               </h4>
               {minimizationResult.removedUnreachableLabels.length > 0 && (
-                <div className="mb-2.5 rounded bg-amber-500/10 border border-amber-500/30 px-2.5 py-1.5 text-xs text-amber-300">
+                <div className="mb-2.5 rounded bg-neutral-100 border border-neutral-300 px-2.5 py-1.5 text-xs text-neutral-900">
                   Estados inalcançáveis eliminados antes do refinamento:{' '}
                   <strong>{minimizationResult.removedUnreachableLabels.join(', ')}</strong>
                 </div>
@@ -268,34 +268,34 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
                 {minimizationResult.partitionHistory.map((p) => (
                   <div
                     key={p.iteration}
-                    className="rounded-lg border border-slate-800 bg-slate-950 p-2.5 text-xs"
+                    className="rounded-lg border border-neutral-200 bg-neutral-50 p-2.5 text-xs"
                   >
-                    <div className="font-mono font-semibold text-emerald-300">
+                    <div className="font-mono font-semibold text-neutral-900">
                       P_{p.iteration} ={' '}
                       {p.groups.map((g) => `{${g.join(', ')}}`).join(' , ')}
                     </div>
-                    <div className="mt-1 text-slate-400">{p.explanation}</div>
+                    <div className="mt-1 text-neutral-500">{p.explanation}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="rounded-xl border border-slate-800 bg-slate-900/90 p-4">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-amber-300 mb-2">
-                Tabela de Distinguibilidade de Pares (Myhill-Nerode)
+            <div className="rounded-xl border border-neutral-200 bg-white/90 p-4">
+              <h4 className="text-xs font-semibold text-neutral-900 mb-2">
+                Pares distinguíveis
               </h4>
-              <div className="max-h-64 overflow-y-auto divide-y divide-slate-800/70">
+              <div className="max-h-64 overflow-y-auto divide-y divide-neutral-200">
                 {minimizationResult.pairTable.map((cell) => (
                   <div
                     key={`${cell.stateA}-${cell.stateB}`}
                     className="flex items-start justify-between gap-2 py-2 text-xs"
                   >
-                    <span className="font-mono font-bold text-slate-200 shrink-0">
+                    <span className="font-mono font-bold text-neutral-800 shrink-0">
                       ({cell.stateA}, {cell.stateB})
                     </span>
                     <span
                       className={`text-right ${
-                        cell.distinguishable ? 'text-slate-400' : 'text-emerald-300 font-semibold'
+                        cell.distinguishable ? 'text-neutral-500' : 'text-neutral-900 font-semibold'
                       }`}
                     >
                       {cell.reason}
@@ -311,34 +311,34 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
       {/* ABA 2.6: AFN -> EXPRESSÃO REGULAR */}
       {subTab === 'nfa-to-er' && (
         <div className="space-y-4">
-          <div className="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-4">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-1">
+          <div className="rounded-xl border border-neutral-300 bg-neutral-100 p-4">
+            <div className="flex items-center gap-2 text-xs font-semibold text-neutral-900 mb-1">
               <Sparkles className="h-4 w-4" />
-              Expressão Regular Equivalente (Seção 2.6 — Eliminação de Estados)
+              Expressão regular equivalente
             </div>
-            <div className="mt-2 rounded-lg border border-slate-800 bg-slate-950 p-3 font-mono text-base font-bold text-emerald-300 break-all">
+            <div className="mt-2 rounded-lg border border-neutral-200 bg-neutral-50 p-3 font-mono text-base font-bold text-neutral-900 break-all">
               {nfaToRegexResult.regex}
             </div>
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-slate-900/90 p-4">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-300 mb-3">
+          <div className="rounded-xl border border-neutral-200 bg-white/90 p-4">
+            <h4 className="text-xs font-semibold text-neutral-700 mb-3">
               Passo a Passo da Eliminação de Estados (R&apos;ᵢⱼ = Rᵢⱼ ∪ Rᵢₖ(Rₖₖ)*Rₖⱼ)
             </h4>
             <div className="space-y-3">
               {nfaToRegexResult.steps.map((st) => (
                 <div
                   key={st.stepNumber}
-                  className="rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs"
+                  className="rounded-lg border border-neutral-200 bg-neutral-50 p-3 text-xs"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-semibold text-amber-300">
+                    <span className="font-semibold text-neutral-900">
                       Passo {st.stepNumber}: Eliminado estado{' '}
-                      <code className="rounded bg-amber-500/20 px-1.5 py-0.5">
+                      <code className="rounded bg-neutral-100 px-1.5 py-0.5">
                         {st.eliminatedStateLabel}
                       </code>
                     </span>
-                    <span className="text-slate-400">
+                    <span className="text-neutral-500">
                        Estados internos restantes:{' '}
                       {st.remainingLabels.length > 0
                         ? st.remainingLabels.join(', ')
@@ -349,12 +349,12 @@ export const ConversionsPanel: React.FC<ConversionsPanelProps> = ({
                     {st.updatedPaths.map((up, idx) => (
                       <div
                         key={idx}
-                        className="rounded border border-slate-800/80 bg-slate-900 px-2.5 py-1.5 font-mono"
+                        className="rounded border border-neutral-300 bg-white px-2.5 py-1.5 font-mono"
                       >
-                        <span className="text-indigo-300">
+                        <span className="text-neutral-900">
                           {up.from} → {up.to}:
                         </span>{' '}
-                        <span className="text-emerald-300 font-semibold">{up.result}</span>
+                        <span className="text-neutral-900 font-semibold">{up.result}</span>
                       </div>
                     ))}
                   </div>

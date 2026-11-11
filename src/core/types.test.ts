@@ -47,3 +47,4 @@ describe('Automaton types & JSON parser (PDF Section 2.1)', () => {
     expect(aut.transitions.some((t) => t.symbol === EPSILON)).toBe(true)
   })
 })
+

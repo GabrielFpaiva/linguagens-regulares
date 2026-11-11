@@ -57,7 +57,7 @@ export function exportAutomatonToSvg(
 
       edgeElements.push(
         `<path d="M ${startX} ${startY} C ${ctrl1X} ${ctrl1Y}, ${ctrl2X} ${ctrl2Y}, ${endX} ${endY}" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)" />`,
-        `<text x="${x}" y="${y - STATE_RADIUS - 44}" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#0f172a">${label}</text>`,
+        `<text x="${x}" y="${y - STATE_RADIUS - 44}" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF">${label}</text>`,
       )
       continue
     }
@@ -89,7 +89,7 @@ export function exportAutomatonToSvg(
 
     edgeElements.push(
       `<path d="M ${sx.toFixed(1)} ${sy.toFixed(1)} Q ${midX.toFixed(1)} ${midY.toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)" />`,
-      `<text x="${labelX.toFixed(1)}" y="${labelY.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#0f172a">${label}</text>`,
+      `<text x="${labelX.toFixed(1)}" y="${labelY.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF">${label}</text>`,
     )
   }
 
@@ -99,22 +99,22 @@ export function exportAutomatonToSvg(
       const ix1 = s.x - STATE_RADIUS - 38
       const ix2 = s.x - STATE_RADIUS - 5
       stateElements.push(
-        `<line x1="${ix1}" y1="${s.y}" x2="${ix2}" y2="${s.y}" stroke="#4f46e5" stroke-width="2.5" marker-end="url(#arrow-init)" />`,
+        `<line x1="${ix1}" y1="${s.y}" x2="${ix2}" y2="${s.y}" stroke="#1D1D1F" stroke-width="2.5" marker-end="url(#arrow-init)" />`,
       )
     }
 
     stateElements.push(
-      `<circle cx="${s.x}" cy="${s.y}" r="${STATE_RADIUS}" fill="#ffffff" stroke="#1e293b" stroke-width="2.2" />`,
+      `<circle cx="${s.x}" cy="${s.y}" r="${STATE_RADIUS}" fill="#ffffff" stroke="#E5E5EA" stroke-width="2.2" />`,
     )
 
     if (s.isAccepting) {
       stateElements.push(
-        `<circle cx="${s.x}" cy="${s.y}" r="${STATE_RADIUS - 5}" fill="none" stroke="#1e293b" stroke-width="1.8" />`,
+        `<circle cx="${s.x}" cy="${s.y}" r="${STATE_RADIUS - 5}" fill="none" stroke="#E5E5EA" stroke-width="1.8" />`,
       )
     }
 
     stateElements.push(
-      `<text x="${s.x}" y="${s.y}" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#0f172a">${escapeXml(s.label)}</text>`,
+      `<text x="${s.x}" y="${s.y}" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">${escapeXml(s.label)}</text>`,
     )
   }
 
@@ -125,11 +125,12 @@ export function exportAutomatonToSvg(
       <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155" />
     </marker>
     <marker id="arrow-init" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#4f46e5" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1D1D1F" />
     </marker>
   </defs>
-  <rect width="100%" height="100%" fill="#f8fafc" rx="12" />
+  <rect width="100%" height="100%" fill="#FFFFFF" rx="12" />
   ${edgeElements.join('\n  ')}
   ${stateElements.join('\n  ')}
 </svg>`
 }
+

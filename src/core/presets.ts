@@ -12,15 +12,15 @@ export interface AutomatonPreset {
 export const AUTOMATON_PRESETS: AutomatonPreset[] = [
   {
     id: 'pdf-page-3',
-    title: '1. AFD do PDF (Pág. 3 — Nº ímpar de "a")',
-    badge: 'AFD · Seção 2.1',
-    sectionRef: 'Exemplo oficial da página 3 do PDF: aceita cadeias sobre {a, b} com quantidade ímpar de símbolos "a".',
+    title: 'Número ímpar de "a"',
+    badge: 'AFD · enunciado, p. 3',
+    sectionRef: 'Aceita cadeias sobre {a, b} com número ímpar de "a".',
     sampleInputs: {
       accept: ['a', 'ab', 'ba', 'abaa', 'bbab'],
       reject: ['', 'b', 'aa', 'aba', 'abba'],
     },
     automaton: {
-      name: 'AFD Exemplo do PDF (Pág. 3)',
+      name: 'Número ímpar de "a"',
       description: 'Aceita cadeias com quantidade ímpar de "a".',
       states: [
         { id: 'q0', label: 'q0', x: 250, y: 210, isInitial: true, isAccepting: false },
@@ -36,15 +36,15 @@ export const AUTOMATON_PRESETS: AutomatonPreset[] = [
   },
   {
     id: 'nfa-ends-ab',
-    title: '2. AFN — Cadeias terminadas em "ab"',
-    badge: 'AFN · Seções 2.1 e 2.3',
-    sectionRef: 'Demonstra múltiplas cópias simultâneas no simulador de AFN e a construção de subconjuntos (AFN → AFD).',
+    title: 'Termina em "ab"',
+    badge: 'AFN',
+    sectionRef: 'Várias cópias ao mesmo tempo no simulador.',
     sampleInputs: {
       accept: ['ab', 'aab', 'bab', 'aaab', 'abab'],
       reject: ['', 'a', 'b', 'ba', 'aba', 'abb'],
     },
     automaton: {
-      name: 'AFN Termina em "ab"',
+      name: 'Termina em "ab"',
       description: 'Em q0, ao ler "a", o autômato se divide em duas cópias (q0 e q1).',
       states: [
         { id: 'q0', label: 'q0', x: 180, y: 210, isInitial: true, isAccepting: false },
@@ -61,15 +61,15 @@ export const AUTOMATON_PRESETS: AutomatonPreset[] = [
   },
   {
     id: 'nfa-epsilon',
-    title: '3. AFN com Movimentos Vazios (ε) — a*b* | bc',
-    badge: 'AFN-ε · Seção 2.3',
-    sectionRef: 'Ideal para demonstrar o cálculo de ε-fecho e a remoção de movimentos vazios antes da conversão para AFD.',
+    title: 'a*b* | bc',
+    badge: 'AFN-ε',
+    sectionRef: 'Tem movimentos vazios (ε).',
     sampleInputs: {
       accept: ['', 'a', 'aa', 'aab', 'b', 'bc'],
       reject: ['ba', 'c', 'abc', 'acb'],
     },
     automaton: {
-      name: 'AFN-ε com Movimentos Vazios',
+      name: 'a*b* | bc',
       description: 'Possui transições ε partindo de q0 para dois ramos independentes.',
       states: [
         { id: 'q0', label: 'q0', x: 140, y: 210, isInitial: true, isAccepting: false },
@@ -90,15 +90,15 @@ export const AUTOMATON_PRESETS: AutomatonPreset[] = [
   },
   {
     id: 'dfa-redundant-minimization',
-    title: '4. AFD Redundante para Minimização (6 → 3 estados)',
-    badge: 'Minimização · Seção 2.4',
-    sectionRef: 'Contém estados equivalentes ({q1, q2} e {q3, q4}) e um estado inalcançável (q5) para demonstrar a minimização.',
+    title: 'Estados redundantes',
+    badge: 'AFD · 6 estados',
+    sectionRef: 'Estados equivalentes ({q1, q2} e {q3, q4}) e um inalcançável (q5).',
     sampleInputs: {
       accept: ['aa', 'ab', 'ba', 'bb', 'aba', 'bab'],
       reject: ['', 'a', 'b'],
     },
     automaton: {
-      name: 'AFD com Estados Equivalentes e Inalcançáveis',
+      name: 'Estados redundantes',
       description: 'Aceita cadeias sobre {a, b} de comprimento >= 2.',
       states: [
         { id: 'q0', label: 'q0', x: 130, y: 210, isInitial: true, isAccepting: false },
@@ -125,15 +125,15 @@ export const AUTOMATON_PRESETS: AutomatonPreset[] = [
   },
   {
     id: 'real-world-onboarding',
-    title: '5. Caso Real: Jornada de Validação Documental',
-    badge: 'Aplicação Real · Workflow',
-    sectionRef: 'Modela um funil real de validação (CPF → Documento → Biometria Facial com retentativa → Aprovação) como AFD.',
+    title: 'Cadastro com biometria',
+    badge: 'AFD · caso real',
+    sectionRef: 'CPF, documento, biometria (com nova tentativa) e aprovação.',
     sampleInputs: {
       accept: ['cdfa', 'cdrfdfa', 'cdffa'],
       reject: ['c', 'cd', 'cdf', 'cdr'],
     },
     automaton: {
-      name: 'Jornada de Onboarding (Alfabeto: c=cpf, d=doc, f=face_ok, r=recusa, a=aprova)',
+      name: 'Cadastro (c=cpf, d=doc, f=face ok, r=recusa, a=aprova)',
       description: 'Mostra como máquinas de estados de sistemas reais são Autômatos Finitos Determinísticos.',
       states: [
         { id: 's0', label: 'Inicio', x: 110, y: 210, isInitial: true, isAccepting: false },
@@ -155,3 +155,4 @@ export const AUTOMATON_PRESETS: AutomatonPreset[] = [
     },
   },
 ]
+

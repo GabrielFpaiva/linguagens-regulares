@@ -360,3 +360,4 @@ export function convertRegexToNfa(pattern: string): RegexToNfaResult {
     steps,
   }
 }
+

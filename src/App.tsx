@@ -1,10 +1,7 @@
 import {
-  BookOpen,
   Code2,
-  Cpu,
   GitCompareArrows,
   PlayCircle,
-  Sparkles,
 } from 'lucide-react'
 import React, { useState } from 'react'
 import { AutomatonCanvas } from './components/AutomatonCanvas'
@@ -45,66 +42,60 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-[#F5F5F7] text-[#1D1D1F] flex flex-col">
       {/* Top Header */}
-      <header className="border-b border-slate-800/90 bg-slate-900/80 backdrop-blur sticky top-0 z-20">
+      <header className="border-b border-black/5 bg-white/75 backdrop-blur-xl sticky top-0 z-20">
         <div className="mx-auto max-w-7xl px-4 py-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600/20 border border-indigo-500/40 text-indigo-400">
-              <Cpu className="h-5 w-5" />
-            </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-base font-bold tracking-tight text-white">
-                  Estúdio de Linguagens Regulares
+                <h1 className="text-[17px] font-semibold tracking-[-0.01em] text-neutral-900">
+                  Linguagens Regulares
                 </h1>
-                <span className="rounded-full bg-indigo-500/15 border border-indigo-500/30 px-2 py-0.5 text-[11px] font-semibold text-indigo-300">
-                  Projeto 01 · LFC
-                </span>
               </div>
-              <p className="text-xs text-slate-400">
-                Autômatos Finitos (AFD, AFN, AFN-ε), Minimização e Expressões Regulares — UFPB
+              <p className="text-xs text-neutral-500">
+                Projeto 1 · Linguagens Formais e Computabilidade · UFPB
               </p>
             </div>
           </div>
 
           {/* Navegação das Seções do PDF */}
-          <nav className="flex items-center gap-1.5 rounded-xl border border-slate-800 bg-slate-950 p-1">
+          <nav className="flex items-center gap-1.5 rounded-xl border border-neutral-200 bg-neutral-50 p-1">
             <button
               type="button"
               onClick={() => setActiveTab('editor-simulator')}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
                 activeTab === 'editor-simulator'
-                  ? 'bg-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-neutral-900 text-white shadow'
+                  : 'text-neutral-500 hover:text-white'
               }`}
             >
               <PlayCircle className="h-3.5 w-3.5" />
-              2.1 &amp; 2.2 Editor Gráfico + Simulador
+              Editor e simulador
             </button>
             <button
               type="button"
               onClick={() => setActiveTab('conversions')}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
                 activeTab === 'conversions'
-                  ? 'bg-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-neutral-900 text-white shadow'
+                  : 'text-neutral-500 hover:text-white'
               }`}
             >
               <GitCompareArrows className="h-3.5 w-3.5" />
-              2.3, 2.4 &amp; 2.6 Conversões e Minimização
+              Conversões
             </button>
             <button
               type="button"
               onClick={() => setActiveTab('regex')}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
                 activeTab === 'regex'
-                  ? 'bg-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-neutral-900 text-white shadow'
+                  : 'text-neutral-500 hover:text-white'
               }`}
             >
               <Code2 className="h-3.5 w-3.5" />
-              2.5 &amp; 2.7 Motor de Expressões Regulares
+              Expressões regulares
             </button>
           </nav>
         </div>
@@ -113,13 +104,12 @@ export const App: React.FC = () => {
       {/* Main Content */}
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-5 space-y-5">
         {/* Catálogo de Presets para Demonstração */}
-        <section className="rounded-xl border border-slate-800 bg-slate-900/70 p-3.5">
+        <section className="rounded-xl border border-neutral-200 bg-white p-3.5">
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-300">
-              <BookOpen className="h-3.5 w-3.5 text-indigo-400" />
-              Exemplos Prontos para Simulação e Apresentação
+            <div className="flex items-center gap-2 text-xs font-semibold text-neutral-700">
+              Exemplos
             </div>
-            <span className="text-xs text-slate-400">{currentPreset.sectionRef}</span>
+            <span className="text-xs text-neutral-500">{currentPreset.sectionRef}</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2">
@@ -132,12 +122,12 @@ export const App: React.FC = () => {
                   onClick={() => handleSelectPreset(preset.id)}
                   className={`flex flex-col justify-between rounded-lg border p-2.5 text-left transition ${
                     isSelected
-                      ? 'border-indigo-500 bg-indigo-950/50 text-white shadow-sm'
-                      : 'border-slate-800 bg-slate-950/70 text-slate-300 hover:border-slate-700'
+                      ? 'border-neutral-900 bg-neutral-100 text-neutral-900 shadow-sm'
+                      : 'border-neutral-200 bg-neutral-50/70 text-neutral-700 hover:border-neutral-300'
                   }`}
                 >
                   <span className="text-xs font-semibold leading-snug">{preset.title}</span>
-                  <span className="mt-2 inline-block self-start rounded bg-slate-800 px-1.5 py-0.5 text-[10px] font-medium text-indigo-300">
+                  <span className="mt-2 inline-block self-start rounded bg-neutral-100 px-1.5 py-0.5 text-[10px] font-medium text-neutral-900">
                     {preset.badge}
                   </span>
                 </button>
@@ -190,11 +180,9 @@ export const App: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950 py-3 px-4 text-center text-xs text-slate-500">
+      <footer className="border-t border-neutral-200 bg-neutral-50 py-3 px-4 text-center text-xs text-neutral-400">
         <span className="inline-flex items-center gap-1.5">
-          <Sparkles className="h-3.5 w-3.5 text-indigo-400" />
-          Linguagens Formais e Computabilidade (UFPB) — Projeto 01: Autômatos Finitos e
-          Expressões Regulares
+          Gabriel Fernandes Paiva · LFC 2026
         </span>
       </footer>
     </div>
@@ -202,3 +190,4 @@ export const App: React.FC = () => {
 }
 
 export default App
+
