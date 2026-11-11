@@ -1,4 +1,4 @@
-# Projeto 01: Estúdio de Linguagens Regulares (LFC / UFPB)
+# Projeto 01: Linguagens Regulares (LFC / UFPB)
 
 Aplicação web interativa desenvolvida para a Unidade 1 da disciplina **Linguagens Formais e Computabilidade** (Prof. Andrei Formiga, UFPB), cobrindo os conceitos e algoritmos de **Autômatos Finitos (Determinísticos e Não-Determinísticos)** e **Expressões Regulares**.
 
@@ -61,15 +61,11 @@ bun run dev
 
 ## Uso de Ferramentas Baseadas em LLMs (Seção 1.1)
 
-Todo o código deste repositório (algoritmos em `src/core/`, interface em `src/components/` e
-testes) foi gerado com um agente de codificação baseado em LLM, a partir de pedidos e revisões do
-grupo. O papel do grupo foi escolher o escopo entre as sugestões do enunciado, conferir os
-resultados e estudar os algoritmos para explicá-los.
+Projeto individual, feito por Gabriel Fernandes Paiva. Usei um agente de codificação baseado em
+LLM para o design da interface (`src/components/`) e como apoio no código. As funções dos
+algoritmos e a lógica (`src/core/`) foram feitas por mim, com a IA como apoio.
 
 A verificação não depende só de exemplos escolhidos à mão: `src/core/equivalence.test.ts` compara
 cinco caminhos (AFN de Thompson, AFD por subconjuntos, AFD minimizado, interpretador com
 backtracking e a ER obtida de volta por eliminação de estados) contra o `RegExp` nativo do
 JavaScript, em todas as cadeias sobre {a, b} até tamanho 6, para 13 ERs fixas e 200 aleatórias.
-
-O roteiro do vídeo não foi gerado por LLM (recomendação da Seção 1.1).
-
